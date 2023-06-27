@@ -1,2 +1,26 @@
-# Airbnb-Malaga-Project
-Este repositorio contiene un proyecto de análisis de datos enfocado en el conjunto de datos de Airbnb en la ciudad de Málaga. El objetivo es obtener insights y patrones interesantes a partir de los datos recopilados. 
+# Análisis de Datos de Airbnb en Málaga
+
+Este proyecto de análisis de datos se centra en el conjunto de datos de Airbnb en la ciudad de Málaga. Airbnb es una plataforma en línea que permite a las personas alquilar sus propiedades o encontrar alojamiento en diferentes destinos alrededor del mundo. Proporciona información y análisis sobre las propiedades de alquiler, las reseñas de los usuarios y la disponibilidad de alojamiento en Málaga.
+
+## Base de datos
+
+El conjunto de datos se organiza en las siguientes tablas de la base de datos:
+
+- `listings`: Contiene información detallada sobre las propiedades de alquiler, como descripciones, ubicaciones, precios y calificaciones de los anfitriones.
+- `reviews`: Contiene las reseñas de los usuarios sobre las propiedades.
+- `calendar`: Proporciona información sobre la disponibilidad de las propiedades en diferentes fechas.
+
+Puedes encontrar el esquema de la base de datos en el archivo [database_schema.sql](link/to/database_schema.sql).
+
+## Uso
+
+Este proyecto está disponible bajo la Licencia Apache 2.0. Puedes utilizar el código, los análisis y los resultados obtenidos de acuerdo con los términos y condiciones de esta licencia. Asegúrate de leer el archivo [LICENSE]([link/to/LICENSE](https://github.com/Isi-17/Airbnb-Malaga-Project/blob/main/LICENSE)) para obtener más información sobre los derechos y restricciones de uso.
+
+## Contribuciones
+
+Las contribuciones a este proyecto son bienvenidas. Si deseas realizar mejoras, correcciones o agregar nuevos análisis no dudes en ponerte en contacto conmigo.
+
+
+
+
+
