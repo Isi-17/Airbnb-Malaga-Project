@@ -121,6 +121,23 @@ CREATE TABLE public.calendar (
 
 -- COPY calendar FROM 'C:/calendar.csv' DELIMITER ',' CSV HEADER;
 
+--Crear índices para mejorar la velocidad de búsqueda: 
+-- Tabla "listings"
+CREATE INDEX idx_listings_id ON listings (id);
+CREATE INDEX idx_listings_host_id ON listings (host_id);
+CREATE INDEX idx_listings_host_id_property_type ON listings (host_id, property_type);
+CREATE INDEX idx_listings_location ON listings USING gist (point(latitude, longitude));
+CREATE INDEX idx_listings_distance ON listings (sqrt(pow(69.1 * (latitude - 36.718437), 2) + pow(69.1 * (longitude - -4.419820) * cos(latitude / 57.3), 2)));
+
+-- Tabla "reviews"	
+CREATE INDEX idx_reviews_listing_id ON reviews (listing_id);
+CREATE INDEX idx_listings_review ON reviews USING gin(to_tsvector('spanish', comments));
+
+-- Tabla "calendar"
+CREATE INDEX idx_calendar_listing_id_date ON calendar (listing_id, date);
+CREATE INDEX idx_calendar_availability ON calendar (available);
+CREATE INDEX idx_calendar_listing_id ON calendar (listing_id);
+
 select * from calendar;
 
 CREATE OR REPLACE VIEW public.top_earnings_popular_month AS
@@ -462,22 +479,6 @@ CREATE VIEW average_prices_by_rating AS
 	
 SELECT * FROM average_prices_by_rating;
 
---Crear índices para mejorar la velocidad de búsqueda: 
--- Tabla "listings"
-CREATE INDEX idx_listings_id ON listings (id);
-CREATE INDEX idx_listings_host_id ON listings (host_id);
-CREATE INDEX idx_listings_host_id_property_type ON listings (host_id, property_type);
-CREATE INDEX idx_listings_location ON listings USING gist (point(latitude, longitude));
-CREATE INDEX idx_listings_distance ON listings (sqrt(pow(69.1 * (latitude - 36.718437), 2) + pow(69.1 * (longitude - -4.419820) * cos(latitude / 57.3), 2)));
-
--- Tabla "reviews"	
-CREATE INDEX idx_reviews_listing_id ON reviews (listing_id);
-CREATE INDEX idx_listings_review ON reviews USING gin(to_tsvector('spanish', comments));
-
--- Tabla "calendar"
-CREATE INDEX idx_calendar_listing_id_date ON calendar (listing_id, date);
-CREATE INDEX idx_calendar_availability ON calendar (available);
-CREATE INDEX idx_calendar_listing_id ON calendar (listing_id);
 
 
 	
