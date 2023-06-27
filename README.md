@@ -14,7 +14,7 @@ Puedes encontrar el esquema de la base de datos en el archivo [database_schema.s
 
 ## Uso
 
-Este proyecto está disponible bajo la Licencia Apache 2.0. Puedes utilizar el código, los análisis y los resultados obtenidos de acuerdo con los términos y condiciones de esta licencia. Asegúrate de leer el archivo [LICENSE]([https://github.com/Isi-17/Airbnb-Malaga-Project/blob/main/LICENSE]) para obtener más información sobre los derechos y restricciones de uso.
+Este proyecto está disponible bajo la Licencia Apache 2.0. Puedes utilizar el código, los análisis y los resultados obtenidos de acuerdo con los términos y condiciones de esta licencia. Asegúrate de leer el archivo [LICENSE][https://github.com/Isi-17/Airbnb-Malaga-Project/blob/main/LICENSE] para obtener más información sobre los derechos y restricciones de uso.
 
 ## Contribuciones
 
