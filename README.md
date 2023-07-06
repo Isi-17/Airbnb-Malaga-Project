@@ -14,7 +14,8 @@ Puedes encontrar el esquema Entidad/Relación de la base de datos en el archivo 
 
 ## Datos
 
-Para este proyecto, los datos utilizados se obtuvieron de [Inside Airbnb](http://insideairbnb.com/). 
+Para este proyecto, los datos utilizados se obtuvieron de [Inside Airbnb](http://insideairbnb.com/).
+
 Inside Airbnb es un proyecto independiente que recopila y analiza datos de Airbnb en diferentes ciudades de todo el mundo. Fue creado con el objetivo de brindar transparencia y comprensión sobre el impacto de Airbnb en los mercados de alquiler a corto plazo. Inside Airbnb recopila datos públicos de las listas de Airbnb, como información sobre las propiedades, los anfitriones y la disponibilidad de alojamiento. Estos datos se utilizan para crear conjuntos de datos estructurados que permiten realizar análisis y visualizaciones detalladas sobre la oferta de alojamiento en cada ciudad. 
 
 Puedes acceder a los datos en el siguiente enlace: [http://insideairbnb.com/get-the-data/](http://insideairbnb.com/get-the-data/).
