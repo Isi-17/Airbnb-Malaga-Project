@@ -20,7 +20,7 @@ Inside Airbnb es un proyecto independiente que recopila y analiza datos de Airbn
 
 Puedes acceder a los datos utilizados para el estudio en el siguiente enlace: [http://insideairbnb.com/get-the-data/](http://insideairbnb.com/get-the-data/).
 
-Además, puedes explorar una visualización interactiva de los datos en un mapa de Málaga a través de [http://insideairbnb.com/malaga/](http://insideairbnb.com/malaga/). La sección "Explorar datos" proporciona información resumida sobre diferentes aspectos de los datos de Airbnb.
+Además, puedes explorar una visualización interactiva de los datos en la sección "Explorar datos" con un mapa de Málaga a través de [http://insideairbnb.com/malaga/](http://insideairbnb.com/malaga/). Proporciona información resumida sobre diferentes aspectos de los datos de Airbnb.
 
 - `Tipo de habitación`: Muestra el porcentaje de diferentes tipos de habitaciones disponibles en las listas de Airbnb en la ciudad. Por ejemplo, se muestra el porcentaje de viviendas/apartamentos completos, habitaciones privadas, habitaciones compartidas y habitaciones de hotel.
 - `Actividad`: Muestra datos relacionados con la actividad de las propiedades de alquiler en Airbnb. Se incluyen estadísticas como el número promedio de noches reservadas, el precio promedio por noche y los ingresos promedio generados. Estos datos se calculan utilizando la estancia mínima, el precio y el número de reseñas de cada propiedad.
