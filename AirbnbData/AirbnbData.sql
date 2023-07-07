@@ -370,6 +370,18 @@ CREATE OR REPLACE VIEW owner_negative_reviews AS
 
 SELECT * FROM owner_negative_reviews;
 
+--Porcentaje de alojamientos que tienen algún comentario negativo
+SELECT COUNT(DISTINCT listing_id) AS total_listings,
+       COUNT(DISTINCT CASE WHEN comments LIKE '%dirty%' 
+			 OR comments LIKE '%sucio%' 
+			 OR comments LIKE '%desordenado%' 
+			 OR comments LIKE '%ruidoso%' THEN listing_id END) AS listings_with_dirty_comments,
+       ROUND(COUNT(DISTINCT CASE WHEN comments LIKE '%dirty%' 
+			 OR comments LIKE '%sucio%' 
+			 OR comments LIKE '%desordenado%' 
+			 OR comments LIKE '%ruidoso%'  THEN listing_id END) * 100.0 / COUNT(DISTINCT listing_id), 2) AS percentage
+FROM reviews;
+
 
 -- Alojamientos según la proximidad al centro de Málaga (36.718437, -4.419820)
 SELECT
@@ -461,6 +473,50 @@ CREATE VIEW average_prices_by_rating AS
 	ORDER BY rating_range;
 	
 SELECT * FROM average_prices_by_rating;
+
+--Porcentaje de viviendas en cada barrio de Malaga
+SELECT neighbourhood_cleansed, COUNT(*) AS count, ROUND(COUNT(*) * 100.0 / (SELECT COUNT(*) FROM listings), 2) AS percentage
+FROM listings
+GROUP BY neighbourhood_cleansed
+ORDER BY percentage DESC;
+
+--Porcentaje de tipos de habitaciones
+SELECT room_type, COUNT(*) AS count, ROUND(COUNT(*) * 100.0 / (SELECT COUNT(*) FROM listings), 2) AS percentage
+FROM listings
+GROUP BY room_type
+ORDER BY percentage DESC;
+
+--Porcentaje de tipos de viviendas
+SELECT property_type, COUNT(*) AS count, ROUND(COUNT(*) * 100.0 / (SELECT COUNT(*) FROM listings), 2) AS percentage
+FROM listings
+GROUP BY property_type
+ORDER BY percentage DESC;
+
+-- Porcentaje y nº camas por alojamiento
+SELECT beds, COUNT(*) AS count, ROUND(COUNT(*) * 100.0 / (SELECT COUNT(*) FROM listings), 2) AS percentage
+FROM listings
+GROUP BY beds
+ORDER BY percentage DESC;
+
+
+--Porcentaje de precio. Podemos ver el precio modal.
+SELECT price, COUNT(*) AS count, ROUND(COUNT(*) * 100.0 / (SELECT COUNT(*) FROM listings), 2) AS percentage
+FROM listings
+GROUP BY price
+ORDER BY percentage DESC;
+
+--Porcentaje de minimo numero de noches.
+SELECT minimum_nights, COUNT(*) AS count, ROUND(COUNT(*) * 100.0 / (SELECT COUNT(*) FROM listings), 2) AS percentage
+FROM listings
+GROUP BY minimum_nights
+ORDER BY percentage DESC;
+
+--Porcentaje de puntuaciones
+SELECT review_scores_rating, COUNT(*) AS count, ROUND(COUNT(*) * 100.0 / (SELECT COUNT(*) FROM listings), 2) AS percentage
+FROM listings
+GROUP BY review_scores_rating
+ORDER BY percentage DESC;
+
 
 --Crear índices para mejorar la velocidad de búsqueda: 
 -- Tabla "listings"
