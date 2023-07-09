@@ -10,7 +10,7 @@ El conjunto de datos se organiza en las siguientes tablas de la base de datos:
 - `reviews`: Contiene las reseñas de los usuarios sobre las propiedades.
 - `calendar`: Proporciona información sobre la disponibilidad de las propiedades en diferentes fechas.
 
-Puedes encontrar el esquema Entidad/Relación de la base de datos en el archivo [schema.png](https://github.com/Isi-17/Airbnb-Malaga-Project/blob/main/Schema.png).
+Puedes encontrar el esquema Entidad/Relación de la base de datos en el archivo [schema.png](https://github.com/Isi-17/Airbnb-Malaga-Project/blob/main/AirbnbData/Schema.png).
 
 ## Datos
 
