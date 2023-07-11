@@ -438,27 +438,25 @@ SELECT EXTRACT(YEAR FROM host_since) AS joined_year, COUNT(DISTINCT host_id) AS 
 	ORDER BY joined_year;
 
 -- Media de precios de alojamiento en función de su valoracion
-CREATE VIEW average_prices_by_rating AS
-	SELECT
-	  rating_range,
-	  ROUND(AVG(CAST(REGEXP_REPLACE(price, '[^\d.]', '', 'g') AS NUMERIC)), 2) AS average_price
-	FROM (
-	  SELECT
-		CASE
-		  WHEN review_scores_rating BETWEEN 0 AND 1 THEN '0-1'
-		  WHEN review_scores_rating > 1 AND review_scores_rating <= 2 THEN '1-2'
-		  WHEN review_scores_rating > 2 AND review_scores_rating <= 3 THEN '2-3'
-		  WHEN review_scores_rating > 3 AND review_scores_rating <= 4 THEN '3-4'
-		  WHEN review_scores_rating > 4 AND review_scores_rating <= 5 THEN '4-5'
-		END AS rating_range,
-		price
-	  FROM listings
-	  WHERE review_scores_rating IS NOT NULL
-	) AS subquery
-	GROUP BY rating_range
-	ORDER BY rating_range;
-	
-SELECT * FROM average_prices_by_rating;
+SELECT
+  rating_range,
+  ROUND(AVG(CAST(REGEXP_REPLACE(price, '[^\d.]', '', 'g') AS NUMERIC)), 2) AS average_price
+FROM (
+  SELECT
+	CASE
+	  WHEN review_scores_rating BETWEEN 0 AND 1 THEN '0-1'
+	  WHEN review_scores_rating > 1 AND review_scores_rating <= 2 THEN '1-2'
+	  WHEN review_scores_rating > 2 AND review_scores_rating <= 3 THEN '2-3'
+	  WHEN review_scores_rating > 3 AND review_scores_rating <= 4 THEN '3-4'
+	  WHEN review_scores_rating > 4 AND review_scores_rating <= 5 THEN '4-5'
+	END AS rating_range,
+	price
+  FROM listings
+  WHERE review_scores_rating IS NOT NULL
+) AS subquery
+GROUP BY rating_range
+ORDER BY rating_range;
+
 
 --Porcentaje de tipos de habitaciones y valoracion promedia del alojamiento en función del tipo de habitación de alojamiento. Vemos que las shared room tienen media 4 frente al resto 5.
 SELECT room_type, COUNT(*) AS count, ROUND(AVG(review_scores_rating)) AS avg_rating, ROUND(COUNT(*) * 100.0 / (SELECT COUNT(*) FROM listings), 2) AS percentage
