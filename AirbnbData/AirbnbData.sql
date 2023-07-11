@@ -403,7 +403,7 @@ SELECT
 	ORDER BY
 		distance, review_scores_rating;
 
--- Valoracion promedia del alojamiento en función del tipo de alojamiento. Vemos que las shared room tienen media 4 frente al resto 5.
+-- Valoracion promedia del alojamiento en función del tipo de habitación de alojamiento. Vemos que las shared room tienen media 4 frente al resto 5.
 SELECT room_type, ROUND(AVG(review_scores_rating)) AS avg_rating
 	FROM listings
 	WHERE review_scores_rating IS NOT NULL
