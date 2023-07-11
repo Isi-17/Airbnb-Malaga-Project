@@ -190,24 +190,15 @@ CREATE OR REPLACE VIEW public.top_earnings_popular_comparison AS
 		proj_rev_30 DESC
 	LIMIT 30;
 
--- Vista de alojamientos por tipo de propiedad:
-CREATE OR REPLACE VIEW property_type_counts AS
-	SELECT property_type, COUNT(*) AS count
-	FROM listings
-	GROUP BY property_type
-	ORDER BY count DESC;
-
-SELECT * FROM property_type_counts;
-
 -- Número total de alojamientos: 7534
 SELECT COUNT(*) AS total_listings
 FROM listings;
 
--- Precio promedio de los alojamientos por tipo de propiedad:
-SELECT property_type, ROUND(AVG(CAST(REGEXP_REPLACE(listings.price, '[^\d.]', '', 'g') AS NUMERIC))) AS avg_price
+-- Nº alojamientos y precio promedio de los alojamientos por tipo de propiedad:
+SELECT property_type, COUNT(*) AS count, ROUND(AVG(CAST(REGEXP_REPLACE(listings.price, '[^\d.]', '', 'g') AS NUMERIC))) AS avg_price
 FROM listings
 GROUP BY property_type 
-ORDER BY avg_price DESC;
+ORDER BY count DESC;
 
 -- Precio promedio de los alojamientos por zona ordenados descendentemente:
 SELECT neighbourhood_cleansed, ROUND(AVG(CAST(REGEXP_REPLACE(price, '[^\d.]', '', 'g') AS NUMERIC))) AS avg_price
