@@ -194,12 +194,13 @@ CREATE OR REPLACE VIEW public.top_earnings_popular_comparison AS
 SELECT COUNT(*) AS total_listings
 FROM listings;
 
--- Nº alojamientos, porcentaje y precio promedio de los alojamientos por tipo de propiedad:
+-- Nº alojamientos, porcentaje , precio promedio y duración promedio de la estancia de los alojamientos por tipo de propiedad:
 SELECT property_type,  COUNT(*) AS count, 
     ROUND(AVG(CAST(REGEXP_REPLACE(listings.price, '[^\d.]', '', 'g') 
     AS NUMERIC))) AS avg_price, 
     ROUND(COUNT(*) * 100.0 / (SELECT COUNT(*) FROM listings), 2) 
-        AS percentage
+        AS percentage, 
+ROUND(AVG(minimum_nights)) AS avg_minimum_nights
 FROM listings
 GROUP BY property_type 
 ORDER BY count DESC;
@@ -276,12 +277,6 @@ $$ LANGUAGE plpgsql;
 
 -- El numero minimo de noches es 3 (la duración en días de la cantidad mínima de noches para alojarte)
 SELECT calculate_max_minimum_nights() AS max_minimum_nights;
-
--- Duración promedio de la estancia por tipo de propiedad.
-SELECT property_type, ROUND(AVG(minimum_nights)) AS avg_minimum_nights
-	FROM listings
-	GROUP BY property_type
-	ORDER BY avg_minimum_nights DESC;
 
 -- Alojamientos mejor valorados por categoría de propiedad.	
 CREATE OR REPLACE VIEW top_rated_listings AS
