@@ -403,13 +403,6 @@ SELECT
 	ORDER BY
 		distance, review_scores_rating;
 
--- Valoracion promedia del alojamiento en función del tipo de habitación de alojamiento. Vemos que las shared room tienen media 4 frente al resto 5.
-SELECT room_type, ROUND(AVG(review_scores_rating)) AS avg_rating
-	FROM listings
-	WHERE review_scores_rating IS NOT NULL
-	GROUP BY room_type
-	ORDER BY avg_rating DESC;
-
 -- Porcentaje de propietarios con más de una propiedad.
 CREATE OR REPLACE FUNCTION calculate_multiple_properties_percentage()
   RETURNS FLOAT AS $$
@@ -467,11 +460,12 @@ CREATE VIEW average_prices_by_rating AS
 	
 SELECT * FROM average_prices_by_rating;
 
---Porcentaje de tipos de habitaciones
-SELECT room_type, COUNT(*) AS count, ROUND(COUNT(*) * 100.0 / (SELECT COUNT(*) FROM listings), 2) AS percentage
+--Porcentaje de tipos de habitaciones y valoracion promedia del alojamiento en función del tipo de habitación de alojamiento. Vemos que las shared room tienen media 4 frente al resto 5.
+SELECT room_type, COUNT(*) AS count, ROUND(AVG(review_scores_rating)) AS avg_rating, ROUND(COUNT(*) * 100.0 / (SELECT COUNT(*) FROM listings), 2) AS percentage
 FROM listings
+WHERE review_scores_rating IS NOT NULL
 GROUP BY room_type
-ORDER BY percentage DESC;
+ORDER BY avg_rating DESC;
 
 -- Porcentaje y nº camas por alojamiento
 SELECT beds, COUNT(*) AS count, ROUND(COUNT(*) * 100.0 / (SELECT COUNT(*) FROM listings), 2) AS percentage
