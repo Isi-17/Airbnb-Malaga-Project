@@ -208,7 +208,8 @@ ORDER BY count DESC;
 -- Nº alojamientos, porcentaje, precio promedio de los alojamientos por zona ordenados descendentemente:
 SELECT neighbourhood_cleansed, COUNT(*) AS count, 
 	ROUND(AVG(CAST(REGEXP_REPLACE(price, '[^\d.]', '', 'g') AS NUMERIC))) AS avg_price,
-	ROUND(COUNT(*) * 100.0 / (SELECT COUNT(*) FROM listings), 2) AS percentage
+	ROUND(COUNT(*) * 100.0 / (SELECT COUNT(*) FROM listings), 2) AS percentage,
+        ROUND(AVG(minimum_nights)) AS avg_minimum_nights
 FROM listings
 GROUP BY neighbourhood_cleansed
 ORDER BY avg_price DESC;
