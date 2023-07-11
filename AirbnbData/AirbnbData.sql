@@ -472,12 +472,6 @@ FROM listings
 GROUP BY room_type
 ORDER BY percentage DESC;
 
---Porcentaje de tipos de viviendas
-SELECT property_type, COUNT(*) AS count, ROUND(COUNT(*) * 100.0 / (SELECT COUNT(*) FROM listings), 2) AS percentage
-FROM listings
-GROUP BY property_type
-ORDER BY percentage DESC;
-
 -- Porcentaje y nº camas por alojamiento
 SELECT beds, COUNT(*) AS count, ROUND(COUNT(*) * 100.0 / (SELECT COUNT(*) FROM listings), 2) AS percentage
 FROM listings
