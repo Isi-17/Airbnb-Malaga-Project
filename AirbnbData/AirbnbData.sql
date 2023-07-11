@@ -471,12 +471,6 @@ CREATE VIEW average_prices_by_rating AS
 	
 SELECT * FROM average_prices_by_rating;
 
---Porcentaje de viviendas en cada barrio de Malaga
-SELECT neighbourhood_cleansed, COUNT(*) AS count, ROUND(COUNT(*) * 100.0 / (SELECT COUNT(*) FROM listings), 2) AS percentage
-FROM listings
-GROUP BY neighbourhood_cleansed
-ORDER BY percentage DESC;
-
 --Porcentaje de tipos de habitaciones
 SELECT room_type, COUNT(*) AS count, ROUND(COUNT(*) * 100.0 / (SELECT COUNT(*) FROM listings), 2) AS percentage
 FROM listings
