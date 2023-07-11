@@ -215,20 +215,6 @@ GROUP BY neighbourhood_cleansed
 ORDER BY avg_price DESC;
 
 
--- Alojamientos con mayor puntaje de revisión:
-SELECT listing_url, name, review_scores_rating
-FROM listings WHERE review_scores_rating != NULL
-ORDER BY review_scores_rating DESC
-LIMIT 50;
-
-
---Alojamientos con mayor disponibilidad anual:
-SELECT name, availability_365
-FROM listings
-ORDER BY availability_365 DESC
-LIMIT 500;
-	
-	
 --Función para calcular el promedio de puntajes de revisión:
 CREATE OR REPLACE FUNCTION calculate_average_rating()
 RETURNS FLOAT AS $$
@@ -348,6 +334,15 @@ CREATE OR REPLACE VIEW negative_reviews AS
     ORDER BY li.id;
 
 SELECT * FROM negative_reviews;
+
+
+--Alojamientos con mayor disponibilidad anual:
+CREATE OR REPLACE VIEW year_availability AS
+	SELECT name, availability_365
+	FROM listings
+	ORDER BY availability_365 DESC
+
+SELECT * FROM year_availability;
 
 
 -- Propietarios con más reseñas con comentarios negativos
