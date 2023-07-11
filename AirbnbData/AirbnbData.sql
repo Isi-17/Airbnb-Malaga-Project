@@ -194,8 +194,12 @@ CREATE OR REPLACE VIEW public.top_earnings_popular_comparison AS
 SELECT COUNT(*) AS total_listings
 FROM listings;
 
--- Nº alojamientos y precio promedio de los alojamientos por tipo de propiedad:
-SELECT property_type, COUNT(*) AS count, ROUND(AVG(CAST(REGEXP_REPLACE(listings.price, '[^\d.]', '', 'g') AS NUMERIC))) AS avg_price
+-- Nº alojamientos, porcentaje y precio promedio de los alojamientos por tipo de propiedad:
+SELECT property_type,  COUNT(*) AS count, 
+    ROUND(AVG(CAST(REGEXP_REPLACE(listings.price, '[^\d.]', '', 'g') 
+    AS NUMERIC))) AS avg_price, 
+    ROUND(COUNT(*) * 100.0 / (SELECT COUNT(*) FROM listings), 2) 
+        AS percentage
 FROM listings
 GROUP BY property_type 
 ORDER BY count DESC;
