@@ -375,26 +375,22 @@ FROM reviews;
 SELECT
 	listing_url,
 	name,
-	latitude,
-	longitude,
-	sqrt(pow(69.1 * (latitude - 36.718437), 2) + pow(69.1 * (longitude - -4.419820) * cos(latitude / 57.3), 2)) AS distance
+	sqrt(pow(69.1 * (latitude - 36.718437), 2) + pow(69.1 * (longitude - -4.419820) * cos(latitude / 57.3), 2)) AS proximidad
 	FROM
 		listings
 	ORDER BY
-		distance;
+		proximidad;
 
 -- Alojamientos según la proximidad al centro de Málaga (36.718437, -4.419820) ordenados de mejor a peor valoración en función de la distancia.
 SELECT
 	listing_url,
 	name,
-	latitude,
-	longitude,
-	sqrt(pow(69.1 * (latitude - 36.718437), 2) + pow(69.1 * (longitude - -4.419820) * cos(latitude / 57.3), 2)) AS distance,
+	sqrt(pow(69.1 * (latitude - 36.718437), 2) + pow(69.1 * (longitude - -4.419820) * cos(latitude / 57.3), 2)) AS proximidad,
 	review_scores_rating
 	FROM
 		listings
 	ORDER BY
-		distance, review_scores_rating;
+		proximidad, review_scores_rating;
 
 -- Porcentaje de propietarios con más de una propiedad.
 CREATE OR REPLACE FUNCTION calculate_multiple_properties_percentage()
