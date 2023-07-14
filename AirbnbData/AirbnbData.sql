@@ -285,12 +285,12 @@ SELECT * FROM least_rated_listings;
 
 	
 --Anfitriones más activos y su relación con las revisiones.	
-SELECT host_id, host_name, host_url, host_listings_count, number_of_reviews
+SELECT host_name, host_url, host_listings_count, number_of_reviews
 FROM (
-    SELECT DISTINCT ON (host_id, host_name, host_url)
-           host_id, host_name, host_url, host_listings_count, number_of_reviews
+    SELECT DISTINCT ON (host_name, host_url)
+           host_name, host_url, host_listings_count, number_of_reviews
     FROM listings
-    ORDER BY host_id, host_name, host_url, number_of_reviews DESC
+    ORDER BY host_name, host_url, number_of_reviews DESC
 ) AS subquery
 ORDER BY number_of_reviews DESC;
 
