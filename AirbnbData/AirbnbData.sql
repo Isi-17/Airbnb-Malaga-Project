@@ -373,7 +373,6 @@ FROM reviews;
 
 -- Alojamientos según la proximidad al centro de Málaga (36.718437, -4.419820)
 SELECT
-	id,
 	listing_url,
 	name,
 	latitude,
@@ -386,7 +385,6 @@ SELECT
 
 -- Alojamientos según la proximidad al centro de Málaga (36.718437, -4.419820) ordenados de mejor a peor valoración en función de la distancia.
 SELECT
-	id,
 	listing_url,
 	name,
 	latitude,
