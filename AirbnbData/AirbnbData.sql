@@ -123,25 +123,6 @@ CREATE TABLE public.calendar (
 
 select * from calendar;
 
-CREATE OR REPLACE VIEW public.top_earnings_popular_comparison AS
-	SELECT
-		id,
-		listing_url,
-		name,
-		host_name,
-		CAST(REGEXP_REPLACE(price, '[^\d.]', '', 'g') AS NUMERIC) AS price_numeric,
-		30 - availability_30 AS booked_out_30,
-		CAST(REGEXP_REPLACE(price, '[^\d.]', '', 'g') AS NUMERIC) * (30 - availability_30) AS proj_rev_30,
-		90 - availability_90 AS booked_out_90,
-		CAST(REGEXP_REPLACE(price, '[^\d.]', '', 'g') AS NUMERIC) * (90 - availability_90) AS proj_rev_90,
-		365 - availability_365 AS booked_out_365,
-		CAST(REGEXP_REPLACE(price, '[^\d.]', '', 'g') AS NUMERIC) * (365 - availability_365) AS proj_rev_365
-	FROM
-		listings
-	ORDER BY
-		proj_rev_30 DESC
-	LIMIT 30;
-
 -- Número total de alojamientos: 7534
 SELECT COUNT(*) AS total_listings
 FROM listings;
