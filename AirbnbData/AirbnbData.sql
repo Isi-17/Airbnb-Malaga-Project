@@ -173,9 +173,12 @@ SELECT li.listing_url, li.name, li.review_scores_rating, COUNT(*) AS comment_cou
 
 -- Vista para mostrar la disponibilidad y el precio diario de los listados:
 CREATE OR REPLACE VIEW listing_availability_price AS
-SELECT c.listing_id, c.date, c.available, c.price, l.name
+SELECT l.id AS listing_id, l.name, MIN(c.date) AS start_date, MAX(c.date) AS end_date, 
+       ROUND(AVG(CAST(REGEXP_REPLACE(REPLACE(l.price, '$', ''), '[^\d.]', '', 'g') AS NUMERIC)), 2) AS price
 FROM calendar c
-JOIN listings l ON c.listing_id = l.id;
+JOIN listings l ON c.listing_id = l.id
+WHERE c.available = 't'
+GROUP BY l.id, l.name, l.price;
 
 SELECT * FROM listing_availability_price;
 
