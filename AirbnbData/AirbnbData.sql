@@ -250,13 +250,22 @@ CREATE OR REPLACE VIEW price_trends AS
 SELECT * FROM price_trends;
 
 -- Tendencias de disponibilidad a lo largo del tiempo:
-CREATE OR REPLACE VIEW availability_trends AS 
-	SELECT	date, 
-			SUM(CASE WHEN available = 't' THEN 1 ELSE 0 END) AS available_listings, 
-			SUM(CASE WHEN available = 'f' THEN 1 ELSE 0 END) AS unavailable_listings 
-	FROM calendar 
-	GROUP BY date 
-	ORDER BY date;
+CREATE OR REPLACE VIEW availability_trends
+ AS
+ SELECT TO_CHAR(date, 'YYYY-MM') AS year_month,
+    sum(
+        CASE
+            WHEN calendar.available = 't'::bpchar THEN 1
+            ELSE 0
+        END) AS available_listings,
+    sum(
+        CASE
+            WHEN calendar.available = 'f'::bpchar THEN 1
+            ELSE 0
+        END) AS unavailable_listings
+   FROM calendar
+  GROUP BY TO_CHAR(date, 'YYYY-MM')
+  ORDER BY year_month;
 
 SELECT * FROM availability_trends;
 
