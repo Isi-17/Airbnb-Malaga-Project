@@ -241,10 +241,11 @@ SELECT * FROM price_by_bedrooms;
 
  -- Tendencias de precios a lo largo del tiempo: precio medio segun la fecha
 CREATE OR REPLACE VIEW price_trends AS 
-	SELECT date, ROUND(AVG(CAST(REGEXP_REPLACE(price, '[^\d.]', '', 'g') AS NUMERIC))) AS avg_price 
-	FROM calendar 
-	GROUP BY date 
-	ORDER BY date;
+    SELECT TO_CHAR(date, 'YYYY-MM') AS year_month, 
+   	ROUND(AVG(CAST(REGEXP_REPLACE(price, '[^\d.]', '', 'g') AS NUMERIC))) AS avg_price 
+    FROM calendar 
+    GROUP BY TO_CHAR(date, 'YYYY-MM') 
+    ORDER BY year_month;
 
 SELECT * FROM price_trends;
 
