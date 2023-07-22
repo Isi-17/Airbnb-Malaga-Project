@@ -271,7 +271,7 @@ SELECT * FROM availability_trends;
 
 -- Alojamiento con comentarios negativos: sucio, desordenado, ruidoso.
 CREATE OR REPLACE VIEW negative_reviews AS
-    SELECT li.id, li.listing_url, li.name, li.host_id, li.host_name, li.host_url, r.comments
+    SELECT li.host_name, li.listing_url, li.host_id, li.host_url, r.comments
     FROM reviews r
     JOIN listings li ON r.listing_id = li.id
     WHERE r.comments LIKE '%sucio%' OR
@@ -293,7 +293,7 @@ SELECT * FROM year_availability;
 
 -- Propietarios con más reseñas con comentarios negativos
 CREATE OR REPLACE VIEW owner_negative_reviews AS
-    SELECT li.host_name, li.host_id, li.host_url, COUNT(*) AS negative_review_count
+    SELECT li.host_name, li.host_url, COUNT(*) AS negative_review_count
     FROM reviews r
     JOIN listings li ON r.listing_id = li.id
     WHERE r.comments LIKE '%sucio%' OR
