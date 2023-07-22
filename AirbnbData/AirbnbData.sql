@@ -475,7 +475,7 @@ ORDER BY percentage DESC;
 
 --Porcentaje de puntuaciones
 SELECT review_scores_rating, COUNT(*) AS count, ROUND(COUNT(*) * 100.0 / (SELECT COUNT(*) FROM listings), 2) AS percentage
-FROM listings
+FROM listings WHERE review_scores_rating IS NOT NULL 
 GROUP BY review_scores_rating
 ORDER BY percentage DESC;
 
