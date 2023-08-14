@@ -393,13 +393,6 @@ GROUP BY rating_range
 ORDER BY rating_range;
 
 
---Porcentaje de tipos de habitaciones y valoracion promedia del alojamiento en función del tipo de habitación de alojamiento. Vemos que las shared room tienen media 4 frente al resto 5.
-SELECT room_type, COUNT(*) AS count, ROUND(AVG(review_scores_rating)) AS avg_rating, ROUND(COUNT(*) * 100.0 / (SELECT COUNT(*) FROM listings), 2) AS percentage
-FROM listings
-WHERE review_scores_rating IS NOT NULL
-GROUP BY room_type
-ORDER BY avg_rating DESC;
-
 -- Porcentaje y nº camas por alojamiento
 SELECT beds, COUNT(*) AS count, ROUND(COUNT(*) * 100.0 / (SELECT COUNT(*) FROM listings), 2) AS percentage
 FROM listings
