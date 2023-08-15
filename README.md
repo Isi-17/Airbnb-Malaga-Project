@@ -31,7 +31,7 @@ Además, puedes explorar una visualización interactiva de los datos en la secci
 ## Dashboard Interactivo
 
 Puedes explorar de manera más detallada algunos de los resultados a través de un [dashboard interactivo en Tableau](https://public.tableau.com/app/profile/isidro.javier.garc.a.fern.ndez/viz/Airbnb_16917759196640/Dashboard). Este dashboard proporciona visualizaciones interactivas que te permiten profundizar en los datos y obtener una comprensión más completa de los diferentes aspectos relacionados con los alojamientos en Málaga. Te invito a explorar el dashboard y descubrir más información sobre los patrones y tendencias en el mercado de alquiler de propiedades en la ciudad de Málaga.
-[Dashboard](Informe/capturas/Dashboard.png)
+<img src="Informe/capturas/Dashboard.png" alt="Ejemplo de Imagen">
 ## Uso
 
 Este proyecto está disponible bajo la Licencia Apache 2.0. Puedes utilizar el código, los análisis y los resultados obtenidos de acuerdo con los términos y condiciones de esta licencia. Asegúrate de leer el archivo [LICENSE](https://github.com/Isi-17/Airbnb-Malaga-Project/blob/main/LICENSE) para obtener más información sobre los derechos y restricciones de uso.
