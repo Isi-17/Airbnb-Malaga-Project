@@ -1,6 +1,7 @@
 # Análisis de Datos de Airbnb en Málaga
 
-Este proyecto de análisis de datos se centra en el conjunto de datos de Airbnb en la ciudad de Málaga. Airbnb es una plataforma en línea que permite a las personas alquilar sus propiedades o encontrar alojamiento en diferentes destinos alrededor del mundo. Proporciona información y análisis sobre las propiedades de alquiler, las reseñas de los usuarios y la disponibilidad de alojamiento en Málaga. Se han utilizado herramientas clave en este proyecto:
+Este proyecto de análisis de datos se centra en el conjunto de datos de Airbnb en la ciudad de Málaga. Airbnb es una plataforma en línea que permite a las personas alquilar sus propiedades o encontrar alojamiento en diferentes destinos alrededor del mundo. Proporciona información y análisis sobre las propiedades de alquiler, las reseñas de los usuarios y la disponibilidad de alojamiento en Málaga. 
+Se han utilizado herramientas clave en este proyecto:
 
 - [Python](https://www.python.org/): Para el análisis y procesamiento de datos.
 - [Tableau](https://www.tableau.com/): Para crear visualizaciones interactivas.
