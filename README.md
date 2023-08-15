@@ -4,15 +4,9 @@ Este proyecto de análisis de datos se centra en el conjunto de datos de Airbnb 
 
 Se han utilizado herramientas clave en este proyecto:
 
-- [Python](https://www.python.org/): Para el análisis y procesamiento de datos.
-- [Tableau](https://www.tableau.com/): Para crear visualizaciones interactivas.
-- [PostgreSQL](https://www.postgresql.org/): Para gestionar la base de datos de manera eficiente.
-
-Los perfiles de GitHub relacionados son:
-- [Perfil de Python en GitHub](https://github.com/python)
-- [Perfil de Tableau en GitHub](https://github.com/tableau)
-- [Perfil de PostgreSQL en GitHub](https://github.com/postgres)
-
+- [Python](https://www.python.org/): Para el análisis, procesamiento y visualización de datos. ([Perfil de Python en GitHub](https://github.com/python))
+- [Tableau](https://www.tableau.com/): Para crear visualizaciones interactivas. ([Perfil de Tableau en GitHub](https://github.com/tableau))
+- [PostgreSQL](https://www.postgresql.org/): Para gestionar la base de datos de manera eficiente. ([Perfil de PostgreSQL en GitHub](https://github.com/postgres))
 
 ## Base de datos
 
