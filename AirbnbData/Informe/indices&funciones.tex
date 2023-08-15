@@ -1,0 +1,113 @@
+\subsection{Índices}
+
+La creación de índices es una estrategia importante para mejorar la velocidad de búsqueda en bases de datos. A continuación, se justifica la creación de índices para cada uno de los siguientes atributos en las tablas correspondientes:
+
+\subsection*{Tabla "listings"}
+
+\begin{itemize}
+  \item \textbf{Atributo "id":} Se ha creado el índice \texttt{idx\_listings\_id} en el atributo "id" de la tabla "listings" para acelerar las búsquedas por este identificador único.
+  \item \textbf{Atributo "host\_id":} Se ha creado el índice \texttt{idx\_listings\_host\_id} en el atributo "host\_id" de la tabla "listings" para mejorar la velocidad de búsqueda de registros relacionados con un host específico.
+  \item \textbf{Atributos "host\_id" y "property\_type":} El índice \\ \texttt{idx\_listings\_host\_id\_property\_type} en los atributos "host\_id" y "property\_type" permite realizar consultas más eficientes que involucren la combinación de estos dos atributos.
+  \item \textbf{Atributos de ubicación:} Se ha creado el índice \texttt{idx\_listings\_location} utilizando el método de índice espacial \texttt{gist} en los atributos de latitud y longitud. Esto mejora la velocidad de búsqueda de registros basados en la ubicación geográfica.
+  \item \textbf{Atributos de distancia:} El índice \texttt{idx\_listings\_distance} se ha creado utilizando una expresión de cálculo de distancia. Esto mejora la eficiencia en las búsquedas que involucren cálculos de distancia utilizando la fórmula proporcionada.
+\end{itemize}
+
+\subsection*{Tabla "reviews"}
+
+\begin{itemize}
+  \item \textbf{Atributo "listing\_id":} Se ha creado el índice \texttt{idx\_reviews\_listing\_id} en el atributo "listing\_id" de la tabla "reviews" para acelerar las búsquedas por el identificador de las propiedades asociadas a las revisiones.
+  \item \textbf{Atributo "comments":} El índice \texttt{idx\_listings\_review} se ha creado utilizando el método \texttt{gin} para la creación de índices de texto completo en el atributo "comments". Esto permite realizar búsquedas de texto en el campo de comentarios de manera más rápida y eficiente.
+\end{itemize}
+
+\subsection*{Tabla "calendar"}
+
+\begin{itemize}
+  \item \textbf{Atributos "listing\_id" y "date":} El índice \\ \texttt{idx\_calendar\_listing\_id\_date} en los atributos "listing\_id" y "date" de la tabla "calendar" mejora la velocidad de búsqueda en consultas que involucren estos dos atributos de manera conjunta.
+  \item \textbf{Atributo "available":} Se ha creado el índice \texttt{idx\_calendar\_availability} en el atributo "available" para acelerar las búsquedas de disponibilidad en el calendario.
+  \item \textbf{Atributo "listing\_id":} El índice \texttt{idx\_calendar\_listing\_id} en el atributo "listing\_id" mejora la eficiencia en búsquedas relacionadas con el identificador de las propiedades en el calendario.
+\end{itemize}
+
+\subsection{Creación de Vistas}
+
+Se crean varias vistas en la base de datos para facilitar el análisis y la visualización de los datos. Estas vistas incluyen:
+
+\begin{itemize}
+    \item \texttt{year\_availability}: Muestra los alojamientos con mayor disponibilidad anual.
+    \item \texttt{listing\_availability\_price}: Muestra la disponibilidad y el precio diario de los listados.
+    \item \texttt{price\_by\_bedrooms}: Muestra el precio medio según el número de habitaciones.
+    \item \texttt{price\_trends}: Muestra las tendencias de precios medios a lo largo de los años.
+    \item \texttt{availability\_trends}: Muestra las tendencias de disponibilidad a lo largo de los años.
+    \item \texttt{top\_rated\_listings}: Muestra los alojamientos mejor valorados por categoría de propiedad.
+    \item \texttt{negative\_reviews}: Muestra los alojamientos con comentarios negativos.
+    \item \texttt{owner\_negative\_reviews}: Muestra los propietarios con más reseñas con comentarios negativos.
+\end{itemize}
+\newpage
+\subsection{Funciones}
+
+El código también incluye la definición de funciones que realizan diferentes cálculos y facilitan el posterior análisis de los datos. Estas funciones incluyen:
+
+\begin{itemize}
+    \item \texttt{calculate\_average\_rating()}: Calcula el promedio de las calificaciones de los alojamientos.
+\end{itemize}
+    \small 
+    \begin{verbatim}
+CREATE OR REPLACE FUNCTION calculate_average_rating() 
+    RETURNS FLOAT AS $$
+DECLARE
+  avg_rating FLOAT;
+BEGIN
+  SELECT AVG(review_scores_rating) INTO avg_rating
+  FROM listings;
+  RETURN avg_rating;
+END;
+$$ LANGUAGE plpgsql;
+    \end{verbatim}
+\begin{itemize}
+    \item \texttt{calculate\_max\_minimum\_nights()}: Calcula el número mínimo de noches para alojarse en los listados.
+\end{itemize}
+    \small 
+    \begin{verbatim}
+CREATE OR REPLACE FUNCTION calculate_max_minimum_nights()
+    RETURNS INTEGER AS $$
+DECLARE
+    max_min_nights INTEGER;
+BEGIN
+    SELECT MAX(minimum_nights) INTO max_min_nights
+    FROM calendar
+    GROUP BY listing_id
+    ORDER BY max_min_nights DESC
+    LIMIT 1;
+    RETURN max_min_nights;
+END;
+$$ LANGUAGE plpgsql;
+    \end{verbatim}
+\begin{itemize}
+    \item \texttt{calculate\_multiple\_properties\_percentage()}: Calcula el porcentaje de propietarios con más de una propiedad.
+\end{itemize}
+    \small 
+    \begin{verbatim}
+CREATE OR REPLACE FUNCTION calculate_multiple_properties_percentage()
+    RETURNS FLOAT AS $$
+DECLARE
+    total_hosts INTEGER;
+    hosts_with_multiple_properties INTEGER;
+    percentage FLOAT;
+BEGIN
+    SELECT COUNT(DISTINCT host_id) INTO total_hosts
+    FROM listings;
+
+    SELECT COUNT(*) INTO hosts_with_multiple_properties
+    FROM (
+    SELECT host_id
+    FROM listings
+    GROUP BY host_id
+    HAVING COUNT(*) > 1
+    ) AS multiple_properties;
+
+    percentage := (hosts_with_multiple_properties::FLOAT / total_hosts::FLOAT) * 100;
+    RETURN ROUND(percentage);
+END;
+$$ LANGUAGE plpgsql;
+    \end{verbatim}
+
+\newpage
