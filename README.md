@@ -27,6 +27,10 @@ Además, puedes explorar una visualización interactiva de los datos en la secci
 - `Alquileres a corto plazo`: Proporciona información sobre la proporción de alquileres a corto plazo en comparación con los alquileres a largo plazo. Esto puede ayudar a comprender si el mercado se inclina más hacia estancias cortas o largas, y si los alquileres a corto plazo están afectando la disponibilidad de viviendas a largo plazo.
 - `Listados por anfitrión`: Muestra el porcentaje de anfitriones que tienen múltiples listados en Airbnb. Esto indica si hay anfitriones que operan varios alojamientos y sugiere la posibilidad de que estén administrando un negocio de alquileres a corto plazo.
 - `Principales anfitriones`: Esta sección probablemente proporcionaría una lista de los principales anfitriones en la ciudad, basada en ciertos criterios como el número de reservas, los ingresos generados o la satisfacción de los huéspedes.
+- 
+## Dashboard Interactivo
+
+Puedes explorar de manera más detallada algunos de los resultados a través de un [dashboard interactivo en Tableau](https://public.tableau.com/app/profile/isidro.javier.garc.a.fern.ndez/viz/Airbnb_16917759196640/Dashboard). Este dashboard proporciona visualizaciones interactivas que te permiten profundizar en los datos y obtener una comprensión más completa de los diferentes aspectos relacionados con los alojamientos en Málaga. Te invito a explorar el dashboard y descubrir más información sobre los patrones y tendencias en el mercado de alquiler de propiedades en la ciudad de Málaga.
 
 ## Uso
 
