@@ -289,7 +289,7 @@ custom_colors3 = ['#fadb87', '#ffca92', '#e47a75', '#78b76e', '#f1a759', '#c8ab5
 
 plt.figure(figsize=(8,5))
 scatter = sns.scatterplot(listings_detail_df['longitude'], listings_detail_df['latitude'], hue=listings_detail_df['neighbourhood'], palette=custom_colors3)
-plt.title('Distribución de Alojamientos por Tipo y Ubicación', weight='bold')
+plt.title('Distribución de Alojamientos por Zona y Ubicación', weight='bold')
 plt.xlabel('Longitud')
 plt.ylabel('Latitud')
 legend = scatter.legend(title='Zona')
@@ -326,7 +326,7 @@ price_per_number_of_reviews = listings_detail_df.groupby(["number_of_reviews"]).
 price_per_number_of_reviews.sort_values(ascending=False)
 plt.figure(figsize=(8,5))
 price_per_number_of_reviews.plot(kind="line", color="#499C1D")
-plt.title("¿Conducir más reseñas a precios más altos?")
+plt.title("Comparación de número de reseñas con precio medio")
 plt.xlabel("Número de Reseñas")
 plt.ylabel("Precio")
 
@@ -350,21 +350,4 @@ sns.heatmap(correlation_matrix.iloc[::-1], annot=True, cmap='rocket_r', center=0
 plt.title('Mapa de Correlación de Atributos', weight='bold')
 
 plt.show()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
