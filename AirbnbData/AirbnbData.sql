@@ -210,15 +210,6 @@ CREATE OR REPLACE VIEW top_rated_listings AS
 
 SELECT * FROM top_rated_listings;
 
--- Alojamientos peor valorados por categoría de propiedad.	
-CREATE OR REPLACE VIEW least_rated_listings AS
-	SELECT  listing_url, property_type, name, review_scores_rating
-	FROM listings
-	WHERE review_scores_rating IS NOT NULL
-	ORDER BY review_scores_rating ASC;
-
-SELECT * FROM least_rated_listings;
-
 	
 --Anfitriones más activos y su relación con las revisiones.	
 SELECT host_name, host_url, host_listings_count, number_of_reviews
