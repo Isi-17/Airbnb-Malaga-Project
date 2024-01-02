@@ -2,7 +2,7 @@
 
 La creación de índices es una estrategia importante para mejorar la velocidad de búsqueda en bases de datos. A continuación, se justifica la creación de índices para cada uno de los siguientes atributos en las tablas correspondientes:
 
-\subsection*{Tabla "listings"}
+\subsection*{Tabla ``listings''}
 
 \begin{itemize}
   \item \textbf{Atributo "id":} Se ha creado el índice \texttt{idx\_listings\_id} en el atributo "id" de la tabla "listings" para acelerar las búsquedas por este identificador único.
@@ -12,14 +12,15 @@ La creación de índices es una estrategia importante para mejorar la velocidad 
   \item \textbf{Atributos de distancia:} El índice \texttt{idx\_listings\_distance} se ha creado utilizando una expresión de cálculo de distancia. Esto mejora la eficiencia en las búsquedas que involucren cálculos de distancia utilizando la fórmula proporcionada.
 \end{itemize}
 
-\subsection*{Tabla "reviews"}
+\subsection*{Tabla ``reviews''}
 
 \begin{itemize}
   \item \textbf{Atributo "listing\_id":} Se ha creado el índice \texttt{idx\_reviews\_listing\_id} en el atributo "listing\_id" de la tabla "reviews" para acelerar las búsquedas por el identificador de las propiedades asociadas a las revisiones.
   \item \textbf{Atributo "comments":} El índice \texttt{idx\_listings\_review} se ha creado utilizando el método \texttt{gin} para la creación de índices de texto completo en el atributo "comments". Esto permite realizar búsquedas de texto en el campo de comentarios de manera más rápida y eficiente.
 \end{itemize}
 
-\subsection*{Tabla "calendar"}
+\subsection*{Tabla ``calendar''}
+
 
 \begin{itemize}
   \item \textbf{Atributos "listing\_id" y "date":} El índice \\ \texttt{idx\_calendar\_listing\_id\_date} en los atributos "listing\_id" y "date" de la tabla "calendar" mejora la velocidad de búsqueda en consultas que involucren estos dos atributos de manera conjunta.
